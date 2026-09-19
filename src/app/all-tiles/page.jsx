@@ -1,27 +1,20 @@
-import TilesCard from '@/components/TilesCard';
-import React from 'react';
+import SearchTiles from "@/components/SearchTiles";
+import React from "react";
 
-const AllTiles = async() => {
+const AllTiles = async () => {
+  const res = await fetch(
+    "https://home-tiles-dukan-fvxj.vercel.app/data.json"
+  );
 
-    const res = await fetch('https://home-tiles-dukan-fvxj.vercel.app/data.json');
+  const tiles = await res.json();
 
-    const tiles = await res.json() ;
+  console.log(tiles);
 
-    console.log(tiles)
-    return (
-        <div>
-
-            <div className='grid grid-cols-3 gap-3'>
-                {
-                    tiles.map(product => <TilesCard key={product.id} product={product}></TilesCard>)
-                }
-
-            </div>
-
-
-            
-        </div>
-    );
+  return (
+    <div className="my-10">
+      <SearchTiles tiles={tiles} />
+    </div>
+  );
 };
 
 export default AllTiles;
