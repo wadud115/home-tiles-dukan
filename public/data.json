@@ -1,10 +1,10 @@
+
 [
-    
   {
     "id": "tile_002",
     "title": "Marble White Tile",
     "description": "Elegant white marble finish tile for modern interiors",
-    "image": "/images/tiles/tile_002.jpg",
+    "image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80",
     "category": "marble",
     "price": 59.99,
     "currency": "USD",
@@ -16,7 +16,7 @@
     "id": "tile_003",
     "title": "Wooden Brown Tile",
     "description": "Wood texture tile with natural brown finish",
-    "image": "/images/tiles/tile_003.jpg",
+    "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&q=80",
     "category": "wooden",
     "price": 39.99,
     "currency": "USD",
@@ -28,7 +28,7 @@
     "id": "tile_004",
     "title": "Glossy Black Tile",
     "description": "High gloss black ceramic tile for luxury spaces",
-    "image": "/images/tiles/tile_004.jpg",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
     "category": "ceramic",
     "price": 49.99,
     "currency": "USD",
@@ -40,7 +40,7 @@
     "id": "tile_005",
     "title": "Stone Grey Tile",
     "description": "Natural stone-inspired grey tile with matte finish",
-    "image": "/images/tiles/tile_005.jpg",
+    "image": "https://images.unsplash.com/photo-1511818966892-d7d671e672a2?w=800&q=80",
     "category": "stone",
     "price": 42.5,
     "currency": "USD",
@@ -52,20 +52,19 @@
     "id": "tile_006",
     "title": "Mosaic Pattern Tile",
     "description": "Decorative mosaic tile for kitchen and bathroom walls",
-    "image": "/images/tiles/tile_006.jpg",
+    "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80",
     "category": "mosaic",
     "price": 65.0,
     "currency": "USD",
     "dimensions": "30x30 cm",
     "material": "Glass",
     "inStock": true
-    
   },
   {
     "id": "tile_007",
     "title": "Terracotta Rustic Tile",
     "description": "Rustic terracotta tile with warm earthy tones",
-    "image": "/images/tiles/tile_007.jpg",
+    "image": "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?w=800&q=80",
     "category": "terracotta",
     "price": 35.75,
     "currency": "USD",
@@ -77,7 +76,7 @@
     "id": "tile_008",
     "title": "Concrete Finish Tile",
     "description": "Industrial-style concrete finish tile for modern homes",
-    "image": "/images/tiles/tile_008.jpg",
+    "image": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
     "category": "concrete",
     "price": 47.25,
     "currency": "USD",
@@ -89,7 +88,7 @@
     "id": "tile_009",
     "title": "Golden Pattern Tile",
     "description": "Luxury golden patterned tile for premium decoration",
-    "image": "/images/tiles/tile_009.jpg",
+    "image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80",
     "category": "decorative",
     "price": 72.99,
     "currency": "USD",
@@ -101,7 +100,7 @@
     "id": "tile_010",
     "title": "Outdoor Anti-Slip Tile",
     "description": "Durable anti-slip tile designed for outdoor areas",
-    "image": "/images/tiles/tile_010.jpg",
+    "image": "https://images.unsplash.com/photo-1558904541-efa843a96f01?w=800&q=80",
     "category": "outdoor",
     "price": 54.99,
     "currency": "USD",
@@ -113,7 +112,7 @@
     "id": "tile_011",
     "title": "Beige Floor Tile",
     "description": "Smooth beige tile suitable for living room flooring",
-    "image": "/images/tiles/tile_011.jpg",
+    "image": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80",
     "category": "floor",
     "price": 44.99,
     "currency": "USD",
@@ -121,6 +120,5 @@
     "material": "Ceramic",
     "inStock": true
   }
+]
 
-
-    ]
