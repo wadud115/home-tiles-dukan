@@ -24,11 +24,12 @@ const Navber = () => {
         
         <div className="flex gap-2 items-center">
           <Image
+          
             src={"/logo.png"}
             alt="logo"
             loading="eager"
-            width={30}
-            height={30}
+            width={50}
+            height={50}
             className="object-cover h-auto w-auto"
           />
 

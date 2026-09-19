@@ -81,6 +81,8 @@ const Banner = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#f8f5f0] via-transparent to-transparent lg:w-1/3" />
         </div>
       </div>
+
+      
     </section>
   );
 };
