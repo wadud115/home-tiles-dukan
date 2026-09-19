@@ -45,11 +45,11 @@ export default function SignIn() {
     }
 
 
-//      const handleGoogleSignIn = async ()=>{
-//         await authClient.signIn.social({
-//             provider : "google"
-//         })
-//   };
+     const handleGoogleSignIn = async ()=>{
+        await authClient.signIn.social({
+            provider : "google"
+        })
+  };
 
   return (
     <Card className="border mx-auto w-125 py-10 mt-5">
@@ -117,7 +117,7 @@ export default function SignIn() {
       <p className="text-center font-semibold ">Dont’t Have An Account ? <span className="text-bold text-pink-500"><Link href={'/auth/register'}>Register</Link></span></p>
       <p className="text-center font-semibold">or</p>
 
-      <Button variant="outline" className={'w-full'}>
+      <Button onClick={handleGoogleSignIn} variant="outline" className={'w-full'}>
         <BsGoogle></BsGoogle>Sign in with google
       </Button>
     </Card>
