@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+import { Button } from "@heroui/react";
+
 const TilesCard = ({ product }) => {
   return (
     <div className="card w-full max-w-sm bg-base-100 shadow-xl p-4">
@@ -33,9 +35,9 @@ const TilesCard = ({ product }) => {
           </div>
 
           <Link href={`/all-tiles/${product.id}`}>
-            <button className="btn bg-pink-600 text-white">
+            <Button variant="outline" className="btn bg-pink-600 text-white rounded-2xl p-2 my-2">
               View Details
-            </button>
+            </Button>
           </Link>
         </div>
       </div>
