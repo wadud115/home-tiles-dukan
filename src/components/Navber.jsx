@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Navber = () => {
+
 //   const userData = authClient.useSession();
 
 //   const user = userData.data?.user;
@@ -59,12 +60,10 @@ const Navber = () => {
 
          
             <ul className="flex items-center gap-3 text-sm">
-              <li>
-                <Link href={"/signup"}>SignUp</Link>
-              </li>
+             
 
               <li>
-                <Link href={"/signin"}>SignIn</Link>
+                <Link href={"/auth/login"}>Log In</Link>
               </li>
             </ul>
           
@@ -83,9 +82,9 @@ const Navber = () => {
                 </Avatar.Fallback>
               </Avatar> */}
 
-              <Button>
+              {/* <Button>
                 SignOut
-              </Button>
+              </Button> */}
 
             </div>
         
@@ -135,21 +134,16 @@ const Navber = () => {
                 
               
                   <>
-                    <Dropdown.Item id="signup" textValue="SignUp">
-                      <Link href="/signup">
-                        <Label>SignUp</Label>
-                      </Link>
-                    </Dropdown.Item>
-
+                   
                     <Dropdown.Item id="signin" textValue="SignIn">
-                      <Link href="/signin">
-                        <Label>SignIn</Label>
+                      <Link href="/auth/login">
+                        <Label>log In</Label>
                       </Link>
                     </Dropdown.Item>
                   </>
                 
 
-               
+{/*                
                   <Dropdown.Item
                     id="signout"
                     textValue="SignOut"
@@ -157,7 +151,7 @@ const Navber = () => {
                   
                   >
                     <Label>SignOut</Label>
-                  </Dropdown.Item>
+                  </Dropdown.Item> */}
              
 
               </Dropdown.Menu>
