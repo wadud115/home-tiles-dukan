@@ -1,7 +1,7 @@
 "use client";
 
-// import { authClient } from "@/lib/auth-client";
-// import { Check } from "@gravity-ui/icons";
+import { authClient } from "@/lib/auth-client";
+import { Check } from "@gravity-ui/icons";
 import {
   Button,
   Card,
@@ -21,28 +21,28 @@ export default function SignIn() {
 
 
 
-//   const onSubmit = async (e) => {
-//     e.preventDefault();
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
    
-//     const email = e.target.email.value;
-//     const password = e.target.password.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
 
 
-//     const {data , error } = await authClient.signIn.email({
+    const {data , error } = await authClient.signIn.email({
         
        
-//         password,
-//         email,
-//         callbackURL : '/'
-//     })
+        password,
+        email,
+        callbackURL : '/'
+    })
 
-//     console.log({data , error})
+    console.log({data , error})
 
 
    
-//     }
+    }
 
 
 //      const handleGoogleSignIn = async ()=>{
@@ -55,7 +55,7 @@ export default function SignIn() {
     <Card className="border mx-auto w-125 py-10 mt-5">
       <h1 className="text-center text-2xl font-bold">Log In</h1>
 
-      <Form className="flex w-96 mx-auto flex-col gap-4" >
+      <Form className="flex w-96 mx-auto flex-col gap-4" onSubmit={onSubmit} >
       
        
 
