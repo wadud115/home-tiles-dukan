@@ -1,36 +1,40 @@
-import TilesCard from '@/components/TilesCard';
-import React from 'react';
+import TilesCard from "@/components/TilesCard";
+import React from "react";
 
-const FeaturedTiles = async() => {
+const FeaturedTiles = async () => {
+  const res = await fetch(
+    "https://home-tiles-dukan-fvxj.vercel.app/data.json"
+  );
 
-    const res = await fetch('https://home-tiles-dukan-fvxj.vercel.app/data.json');
+  const tiles = await res.json();
 
-    const tiles = await res.json() ;
+  const topTiles = tiles.slice(0, 4);
 
+  return (
+    <section className="w-full px-4 py-10 sm:px-6 md:py-14 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl">
 
+      
+        <div className="mb-8 text-center sm:mb-10">
+          <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+            Featured Tiles
+          </h2>
 
-    console.log(tiles)
-
-
-    const topTiles = tiles.slice(0,4)
-    return (
-        <div className='mx-auto'>
-
-              <h2 className='font-bold my-15 mx-8 text-2xl'>FeaturedTiles</h2>
-
-            <div className='grid grid-cols-1: sm:grid-cols-2 lg:grid-cols-4 gap-2 my-6 '>
-
-              
-                {
-                    topTiles.map(product => <TilesCard key={product.id} product={product}></TilesCard>)
-                }
-
-            </div>
-
-
-            
+          <p className="mx-auto mt-2 max-w-xl text-sm text-gray-500 sm:text-base">
+            Explore our handpicked collection of premium and stylish tiles.
+          </p>
         </div>
-    );
+
+        
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {topTiles.map((product) => (
+            <TilesCard key={product.id} product={product} />
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
 };
 
 export default FeaturedTiles;
