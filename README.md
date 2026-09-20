@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏠 Tiles Gallery
 
-## Getting Started
+A modern and responsive tile gallery web application built with **Next.js**.  
+Users can explore premium tiles, search products, view detailed information, and manage their profiles with authentication.
 
-First, run the development server:
+## 🌐 Live Website
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 **Live Demo:** https://home-tiles-dukan.vercel.app/
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📂 GitHub Repository
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+🔗 **GitHub:** https://github.com/wadud115/home-tiles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Features
 
-To learn more about Next.js, take a look at the following resources:
+- 🏠 Modern and responsive homepage
+- 🖼️ Premium tile collection
+- 🔍 Search tiles by title
+- 📋 View detailed tile information
+- 📱 Fully responsive design for mobile, tablet, and desktop
+- 🔐 Email & password authentication
+- 🔵 Google authentication
+- 👤 User profile page
+- ✏️ Update user profile
+- 🚪 Secure logout functionality
+- 🧭 Active navigation links
+- 📢 Promotional marquee section
+- ⚡ Loading UI while fetching data
+- ❌ Custom not-found page
+- 🔔 Toast notifications
+- 🌐 Dynamic tile details using route parameters
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛠️ Technologies Used
 
-## Deploy on Vercel
+### Frontend
+- **Next.js**
+- **React**
+- **JavaScript**
+- **Tailwind CSS**
+- **DaisyUI**
+- **HeroUI**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Authentication
+- **Better Auth**
+- **Google OAuth**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Database
+- **MongoDB**
+
+### Other Tools & Libraries
+- **React Toastify**
+- **React Icons**
+- **Next/Image**
+- **Next/Link**
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── app/
+│   ├── all-tiles/
+│   │   ├── [id]/
+│   │   │   └── page.jsx
+│   │   ├── loading.jsx
+│   │   └── page.jsx
+│   │
+│   ├── auth/
+│   │   ├── login/
+│   │   │   └── page.jsx
+│   │   └── register/
+│   │       └── page.jsx
+│   │
+│   ├── profile/
+│   │   └── page.jsx
+│   │
+│   ├── api/
+│   │   └── auth/
+│   │       └── [...all]/
+│   │           └── route.js
+│   │
+│   ├── globals.css
+│   ├── layout.jsx
+│   ├── not-found.jsx
+│   └── page.jsx
+│
+├── components/
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   ├── Banner.jsx
+│   ├── Marquee.jsx
+│   ├── FeaturedTiles.jsx
+│   ├── TilesCard.jsx
+│   ├── SearchTiles.jsx
+│   └── UpdateUserModal.jsx
+│
+└── lib/
+    ├── auth.js
+    └── auth-client.js
