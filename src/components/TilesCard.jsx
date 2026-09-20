@@ -17,10 +17,10 @@ const TilesCard = ({ product }) => {
         />
       </figure>
 
-      <div className="card-body px-2">
-        <h2 className="card-title">
+      <div className="card-body px-2 ">
+        <h2 className="card-title flex gap-2 font-bold text-xl">
           {product.title}
-          <div className="badge badge-secondary">
+          <div className="badge badge-secondary p-2">
             {product.material}
           </div>
         </h2>
@@ -29,9 +29,12 @@ const TilesCard = ({ product }) => {
           {product.description}
         </p>
 
-        <div className="card-actions justify-between items-center mt-3">
-          <div className="badge badge-outline">
-            ${product.price}
+        <div className="card-actions flex justify-between items-center mt-3">
+
+
+          <div className="badge badge-outline p-2 font-bold ">
+
+           price ${product.price}
           </div>
 
           <Link href={`/all-tiles/${product.id}`}>

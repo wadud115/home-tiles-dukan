@@ -1,7 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { Check } from "@gravity-ui/icons";
+
 import {
   Button,
   Card,
@@ -12,59 +12,102 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
-import Link from "next/link";
 
+import Link from "next/link";
 import { BsGoogle } from "react-icons/bs";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function SignIn() {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
+const onSubmit = async (e) => {
+  e.preventDefault();
 
+  setErrorMessage("");
+  setLoading(true);
 
+  const email = e.target.email.value;
+  const password = e.target.password.value;
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  try {
+    const { data, error } = await authClient.signIn.email({
+      email,
+      password,
+      callbackURL: "/",
+    });
 
-   
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    console.log({ data, error });
 
-
-
-    const {data , error } = await authClient.signIn.email({
-        
-       
-        password,
-        email,
-        callbackURL : '/'
-    })
-
-    console.log({data , error})
-
-
-   
+    if (error) {
+      setErrorMessage(
+        error.message || "Invalid email or password."
+      );
+      return;
     }
 
+    // ✅ Login Success Toast
+    toast.success("Login successful! Welcome back 🎉");
 
-     const handleGoogleSignIn = async ()=>{
-        await authClient.signIn.social({
-            provider : "google"
-        })
-  };
+  } catch (error) {
+    console.error(error);
 
+    setErrorMessage(
+      "Login failed. Please check your email and password."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
+
+ const handleGoogleSignIn = async () => {
+  try {
+    setErrorMessage("");
+
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+
+    toast.success("Google login successful! 🎉");
+
+  } catch (error) {
+    console.error(error);
+
+    toast.error("Google sign in failed. Please try again.");
+  }
+};
   return (
-    <Card className="border mx-auto w-125 py-10 mt-5">
-      <h1 className="text-center text-2xl font-bold">Log In</h1>
+    <Card className="mx-auto mt-5 w-125 border py-10">
 
-      <Form className="flex w-96 mx-auto flex-col gap-4" onSubmit={onSubmit} >
-      
-       
+      <h1 className="text-center text-2xl font-bold">
+        Log In
+      </h1>
 
+      <Form
+        className="mx-auto flex w-96 flex-col gap-4"
+        onSubmit={onSubmit}
+      >
+
+        {/* Error Message */}
+        {errorMessage && (
+          <div className="w-full rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+            {errorMessage}
+          </div>
+        )}
+
+        {/* Email */}
         <TextField
           isRequired
           name="email"
           type="email"
           validate={(value) => {
-            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+            if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+                value
+              )
+            ) {
               return "Please enter a valid email address";
             }
 
@@ -72,10 +115,13 @@ export default function SignIn() {
           }}
         >
           <Label>Email</Label>
+
           <Input placeholder="john@example.com" />
+
           <FieldError />
         </TextField>
 
+        {/* Password */}
         <TextField
           isRequired
           minLength={8}
@@ -85,41 +131,68 @@ export default function SignIn() {
             if (value.length < 8) {
               return "Password must be at least 8 characters";
             }
-            if (!/[A-Z]/.test(value)) {
-              return "Password must contain at least one uppercase letter";
-            }
-            if (!/[0-9]/.test(value)) {
-              return "Password must contain at least one number";
-            }
 
             return null;
           }}
         >
           <Label>Password</Label>
+
           <Input placeholder="Enter your password" />
+
           <Description>
-            Must be at least 8 characters with 1 uppercase and 1 number
+            Must be at least 8 characters
           </Description>
+
           <FieldError />
         </TextField>
 
+        {/* Buttons */}
         <div className="flex gap-2">
-          <Button className='bg-pink-500' type="submit">
-           
-            Submit
+
+          <Button
+            className="bg-pink-500 text-white"
+            type="submit"
+            isDisabled={loading}
+          >
+            {loading ? "Logging in..." : "Submit"}
           </Button>
-          <Button  className='text-pink-500' type="reset" variant="secondary">
+
+          <Button
+            className="text-pink-500"
+            type="reset"
+            variant="secondary"
+            onPress={() => setErrorMessage("")}
+          >
             Reset
           </Button>
+
         </div>
       </Form>
 
-      <p className="text-center font-semibold ">Dont’t Have An Account ? <span className="text-bold text-pink-500"><Link href={'/auth/register'}>Register</Link></span></p>
-      <p className="text-center font-semibold">or</p>
+      {/* Register */}
+      <p className="text-center font-semibold">
+        Don’t Have An Account?{" "}
+        <span className="font-bold text-pink-500">
+          <Link href="/auth/register">
+            Register
+          </Link>
+        </span>
+      </p>
 
-      <Button onClick={handleGoogleSignIn} variant="outline" className={'w-full'}>
-        <BsGoogle></BsGoogle>Sign in with google
+      <p className="text-center font-semibold">
+        or
+      </p>
+
+      {/* Google */}
+      <Button
+        onPress={handleGoogleSignIn}
+        variant="outline"
+        className="w-full"
+      >
+        <BsGoogle />
+        Sign in with Google
       </Button>
+
     </Card>
   );
 }
