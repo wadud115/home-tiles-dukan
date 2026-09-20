@@ -1,47 +1,52 @@
-
 const Marquee = () => {
   const items = [
+    "New Arrivals: Ceramic Blue Tile",
+    "Weekly Feature: Modern Geometric Patterns",
+    "Join the Community",
     "Premium Quality Tiles",
-    "Modern & Elegant Designs",
-    "Marble Collection",
-    "Wooden Tiles",
-    "Luxury Tiles",
     "Fast & Safe Delivery",
-    "Perfect Tiles For Every Space",
   ];
 
   return (
-    <section className="overflow-hidden bg-pink-600 py-4 mt-8">
+    <section className="mt-6 overflow-hidden bg-pink-600 py-3 sm:mt-8 sm:py-4">
       <div className="flex w-max animate-marquee">
-        {/* First set */}
+
+        {/* First Set */}
         <div className="flex items-center">
           {items.map((item, index) => (
             <div key={index} className="flex items-center">
-              <span className="mx-8 whitespace-nowrap text-sm font-semibold uppercase tracking-wider text-white sm:text-base">
+              <span className="mx-4 whitespace-nowrap text-xs font-semibold tracking-wide text-white sm:mx-8 sm:text-sm md:text-base">
                 {item}
               </span>
 
-              <span className="text-xl text-white/70">✦</span>
+              <span className="text-base text-white/70 sm:text-xl">
+                ✦
+              </span>
             </div>
           ))}
         </div>
 
-        {/* Duplicate set for seamless loop */}
+        {/* Duplicate Set */}
         <div className="flex items-center">
           {items.map((item, index) => (
-            <div key={`duplicate-${index}`} className="flex items-center">
-              <span className="mx-8 whitespace-nowrap text-sm font-semibold uppercase tracking-wider text-white sm:text-base">
+            <div
+              key={`duplicate-${index}`}
+              className="flex items-center"
+            >
+              <span className="mx-4 whitespace-nowrap text-xs font-semibold tracking-wide text-white sm:mx-8 sm:text-sm md:text-base">
                 {item}
               </span>
 
-              <span className="text-xl text-white/70">✦</span>
+              <span className="text-base text-white/70 sm:text-xl">
+                ✦
+              </span>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
 };
 
 export default Marquee;
-

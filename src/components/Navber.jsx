@@ -1,77 +1,91 @@
-
-
-
 "use client";
 
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Button, Dropdown, Label } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navber = () => {
+  const pathname = usePathname();
 
   const userData = authClient.useSession();
-
   const user = userData.data?.user;
 
   const handleLogOut = async () => {
     await authClient.signOut();
   };
 
+ 
+  const navLinkClass = (path) =>
+    `rounded-lg px-3 py-2 transition-all duration-200 ${
+      pathname === path
+        ? "bg-pink-500 text-white shadow-sm"
+        : "text-gray-700 hover:bg-pink-50 hover:text-pink-500"
+    }`;
+
   return (
-    <div className="  border-b border-b-gray-200 px-2">
-      <nav className="flex justify-between items-center py-3 max-w-7xl mx-auto w-full">
+    <div className="border-b border-gray-200 px-2">
+      <nav className="mx-auto flex w-full max-w-7xl items-center justify-between py-3">
 
-        
-       <Link href={'/'}> <div className="flex gap-2 items-center">
-          <Image
-          
-            src={"/logo.png"}
-            alt="logo"
-            loading="eager"
-            width={50}
-            height={50}
-            className="object-cover h-auto w-auto"
-          />
+        {/* Logo */}
+        <Link href="/">
+          <div className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="logo"
+              loading="eager"
+              width={50}
+              height={50}
+              className="h-auto w-auto object-cover"
+            />
 
-          <h3 className="font-black text-lg">Tiles Gallery</h3>
-        </div>
-</Link>
+            <h3 className="text-lg font-black">
+              Tiles Gallery
+            </h3>
+          </div>
+        </Link>
 
-       
-        <ul className="hidden md:flex items-center gap-5 text-sm">
+     
+        <ul className="hidden items-center gap-2 text-sm font-semibold md:flex">
           <li>
-            <Link href={"/"}>Home</Link>
+            <Link href="/" className={navLinkClass("/")}>
+              Home
+            </Link>
           </li>
 
           <li>
-            <Link href={"/all-tiles"}>All Tiles</Link>
+            <Link
+              href="/all-tiles"
+              className={navLinkClass("/all-tiles")}
+            >
+              All Tiles
+            </Link>
           </li>
 
-       
           <li>
-            <Link href={"/profile"}>My Profile</Link>
+            <Link
+              href="/profile"
+              className={navLinkClass("/profile")}
+            >
+              My Profile
+            </Link>
           </li>
         </ul>
 
-
       
-        <div className="hidden md:flex gap-4">
+        <div className="hidden gap-4 font-semibold md:flex">
+          {!user && (
+            <Link
+              href="/auth/login"
+              className={navLinkClass("/auth/login")}
+            >
+              Log In
+            </Link>
+          )}
 
-         
-            
-             
-
-             { !user && (
-                <Link href={"/auth/login"}> Log In</Link>
-              )}
-        
-          
-      
-            
           {user && (
-            <div className="flex gap-3 items-center">
-
+            <div className="flex items-center gap-3">
               <Avatar>
                 <Avatar.Image
                   alt={user?.name || "User"}
@@ -80,27 +94,23 @@ const Navber = () => {
                 />
 
                 <Avatar.Fallback>
-                  {user?.name?.[0]}
+                  {user?.name?.[0]?.toUpperCase()}
                 </Avatar.Fallback>
               </Avatar>
 
-              <Button onClick={handleLogOut} variant="danger">
+              <Button
+                onClick={handleLogOut}
+                variant="danger"
+              >
                 Log Out
               </Button>
-
             </div>
           )}
-
-             
-          
-
         </div>
 
-
-      
-        <div className="md:hidden">
+    
+        <div className="font-semibold md:hidden">
           <Dropdown>
-
             <Button
               aria-label="Menu"
               variant="secondary"
@@ -112,71 +122,95 @@ const Navber = () => {
             <Dropdown.Popover>
               <Dropdown.Menu>
 
-                <Dropdown.Item id="home" textValue="Home">
-                  <Link href="/">
+                {/* Home */}
+                <Dropdown.Item
+                  id="home"
+                  textValue="Home"
+                >
+                  <Link
+                    href="/"
+                    className={`block w-full rounded-md px-2 py-2 ${
+                      pathname === "/"
+                        ? "text-pink-500 "
+                        : ""
+                    }`}
+                  >
                     <Label>Home</Label>
                   </Link>
                 </Dropdown.Item>
 
-                <Dropdown.Item id="all-photos" textValue="All Photos">
-                  <Link href="/all-tiles">
+              
+                <Dropdown.Item
+                  id="all-tiles"
+                  textValue="All Tiles"
+                >
+                  <Link
+                    href="/all-tiles"
+                    className={`block w-full rounded-md px-2 py-2 ${
+                      pathname === "/all-tiles"
+                        ? "text-pink-500 "
+                        : ""
+                    }`}
+                  >
                     <Label>All Tiles</Label>
                   </Link>
                 </Dropdown.Item>
 
-
-                <Dropdown.Item id="profile" textValue="Profile">
-                  <Link href="/profile">
+             
+                <Dropdown.Item
+                  id="profile"
+                  textValue="Profile"
+                >
+                  <Link
+                    href="/profile"
+                    className={`block w-full rounded-md px-2 py-2 ${
+                      pathname === "/profile"
+                        ? "text-pink-500 "
+                        : ""
+                    }`}
+                  >
                     <Label>Profile</Label>
                   </Link>
                 </Dropdown.Item>
 
                 
-              
-                 { !user && ( <>
-                   
-                    <Dropdown.Item id="signin" textValue="SignIn">
-                      <Link href="/auth/login">
-                        <Label>log In</Label>
-                      </Link>
-                    </Dropdown.Item>
-                  </>)
-                }
+                {!user && (
+                  <Dropdown.Item
+                    id="signin"
+                    textValue="Sign In"
+                  >
+                    <Link
+                      href="/auth/login"
+                      className={`block w-full rounded-md px-2 py-2 ${
+                        pathname === "/auth/login"
+                          ? "text-pink-500 "
+                          : ""
+                      }`}
+                    >
+                      <Label>Log In</Label>
+                    </Link>
+                  </Dropdown.Item>
+                )}
 
-             { user && (           
+          
+                {user && (
                   <Dropdown.Item
                     id="signout"
-                    textValue="SignOut"
+                    textValue="Sign Out"
                     variant="danger"
-                  
+                    onAction={handleLogOut}
                   >
                     <Label>Log Out</Label>
-
-                     <Avatar>
-                <Avatar.Image
-                  alt={user?.name || "User"}
-                  referrerPolicy="no-referrer"
-                  src={user?.image}
-                />
-
-                <Avatar.Fallback>
-                  {user?.name?.[0]}
-                </Avatar.Fallback>
-              </Avatar>
-
-                  </Dropdown.Item>  )   }
-             
+                  </Dropdown.Item>
+                )}
 
               </Dropdown.Menu>
             </Dropdown.Popover>
-
           </Dropdown>
         </div>
-
       </nav>
     </div>
   );
 };
 
 export default Navber;
-

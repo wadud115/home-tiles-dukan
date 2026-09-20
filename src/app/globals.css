@@ -4,7 +4,6 @@
 
 
 
-
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -18,4 +17,3 @@
 .animate-marquee {
   animation: marquee 25s linear infinite;
 }
-
