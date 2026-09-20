@@ -1,22 +1,28 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { Avatar, Button, Dropdown, Label } from "@heroui/react";
+import { Avatar, Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const Navber = () => {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const userData = authClient.useSession();
   const user = userData.data?.user;
 
   const handleLogOut = async () => {
     await authClient.signOut();
+    setIsMenuOpen(false);
   };
 
- 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   const navLinkClass = (path) =>
     `rounded-lg px-3 py-2 transition-all duration-200 ${
       pathname === path
@@ -25,28 +31,28 @@ const Navber = () => {
     }`;
 
   return (
-    <div className="border-b border-gray-200 px-2">
-      <nav className="mx-auto flex w-full max-w-7xl items-center justify-between py-3">
+    <header className="w-full border-b border-gray-200 bg-white">
+      <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
 
         {/* Logo */}
-        <Link href="/">
+        <Link href="/" onClick={closeMenu}>
           <div className="flex items-center gap-2">
             <Image
               src="/logo.png"
-              alt="logo"
-              loading="eager"
-              width={50}
-              height={50}
-              className="h-auto w-auto object-cover"
+              alt="Tiles Gallery logo"
+              width={40}
+              height={40}
+              priority
+              className="h-9 w-9 object-contain sm:h-10 sm:w-10"
             />
 
-            <h3 className="text-lg font-black">
+            <h3 className="text-base font-black sm:text-lg">
               Tiles Gallery
             </h3>
           </div>
         </Link>
 
-     
+        {/* Desktop Navigation */}
         <ul className="hidden items-center gap-2 text-sm font-semibold md:flex">
           <li>
             <Link href="/" className={navLinkClass("/")}>
@@ -73,20 +79,18 @@ const Navber = () => {
           </li>
         </ul>
 
-      
-        <div className="hidden gap-4 font-semibold md:flex">
-          {!user && (
+        {/* Desktop User */}
+        <div className="hidden items-center gap-3 md:flex">
+          {!user ? (
             <Link
               href="/auth/login"
               className={navLinkClass("/auth/login")}
             >
               Log In
             </Link>
-          )}
-
-          {user && (
-            <div className="flex items-center gap-3">
-              <Avatar>
+          ) : (
+            <>
+              <Avatar className="h-9 w-9">
                 <Avatar.Image
                   alt={user?.name || "User"}
                   referrerPolicy="no-referrer"
@@ -101,115 +105,103 @@ const Navber = () => {
               <Button
                 onClick={handleLogOut}
                 variant="danger"
+                className="rounded-lg"
               >
                 Log Out
               </Button>
-            </div>
+            </>
           )}
         </div>
 
-    
-        <div className="font-semibold md:hidden">
-          <Dropdown>
-            <Button
-              aria-label="Menu"
-              variant="secondary"
-              className="text-xl"
-            >
-              ☰
-            </Button>
-
-            <Dropdown.Popover>
-              <Dropdown.Menu>
-
-                {/* Home */}
-                <Dropdown.Item
-                  id="home"
-                  textValue="Home"
-                >
-                  <Link
-                    href="/"
-                    className={`block w-full rounded-md px-2 py-2 ${
-                      pathname === "/"
-                        ? "text-pink-500 "
-                        : ""
-                    }`}
-                  >
-                    <Label>Home</Label>
-                  </Link>
-                </Dropdown.Item>
-
-              
-                <Dropdown.Item
-                  id="all-tiles"
-                  textValue="All Tiles"
-                >
-                  <Link
-                    href="/all-tiles"
-                    className={`block w-full rounded-md px-2 py-2 ${
-                      pathname === "/all-tiles"
-                        ? "text-pink-500 "
-                        : ""
-                    }`}
-                  >
-                    <Label>All Tiles</Label>
-                  </Link>
-                </Dropdown.Item>
-
-             
-                <Dropdown.Item
-                  id="profile"
-                  textValue="Profile"
-                >
-                  <Link
-                    href="/profile"
-                    className={`block w-full rounded-md px-2 py-2 ${
-                      pathname === "/profile"
-                        ? "text-pink-500 "
-                        : ""
-                    }`}
-                  >
-                    <Label>Profile</Label>
-                  </Link>
-                </Dropdown.Item>
-
-                
-                {!user && (
-                  <Dropdown.Item
-                    id="signin"
-                    textValue="Sign In"
-                  >
-                    <Link
-                      href="/auth/login"
-                      className={`block w-full rounded-md px-2 py-2 ${
-                        pathname === "/auth/login"
-                          ? "text-pink-500 "
-                          : ""
-                      }`}
-                    >
-                      <Label>Log In</Label>
-                    </Link>
-                  </Dropdown.Item>
-                )}
-
-          
-                {user && (
-                  <Dropdown.Item
-                    id="signout"
-                    textValue="Sign Out"
-                    variant="danger"
-                    onAction={handleLogOut}
-                  >
-                    <Label>Log Out</Label>
-                  </Dropdown.Item>
-                )}
-
-              </Dropdown.Menu>
-            </Dropdown.Popover>
-          </Dropdown>
-        </div>
+        {/* Mobile Menu Button */}
+        <button
+          type="button"
+          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="rounded-lg border border-gray-200 px-3 py-2 text-xl text-gray-700 transition hover:bg-gray-100 md:hidden"
+        >
+          {isMenuOpen ? "✕" : "☰"}
+        </button>
       </nav>
-    </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="border-t border-gray-200 bg-white px-4 py-4 shadow-sm md:hidden">
+          <div className="mx-auto flex w-full max-w-7xl flex-col gap-2">
+
+            {/* Home */}
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className={navLinkClass("/")}
+            >
+              Home
+            </Link>
+
+            {/* All Tiles */}
+            <Link
+              href="/all-tiles"
+              onClick={closeMenu}
+              className={navLinkClass("/all-tiles")}
+            >
+              All Tiles
+            </Link>
+
+            {/* Profile */}
+            <Link
+              href="/profile"
+              onClick={closeMenu}
+              className={navLinkClass("/profile")}
+            >
+              My Profile
+            </Link>
+
+            {/* Login */}
+            {!user && (
+              <Link
+                href="/auth/login"
+                onClick={closeMenu}
+                className={navLinkClass("/auth/login")}
+              >
+                Log In
+              </Link>
+            )}
+
+            {/* User info */}
+            {user && (
+              <div className="mt-2 flex items-center justify-between border-t border-gray-200 pt-4">
+                <div className="flex min-w-0 items-center gap-3">
+                  <Avatar className="h-9 w-9 shrink-0">
+                    <Avatar.Image
+                      alt={user?.name || "User"}
+                      referrerPolicy="no-referrer"
+                      src={user?.image}
+                    />
+
+                    <Avatar.Fallback>
+                      {user?.name?.[0]?.toUpperCase()}
+                    </Avatar.Fallback>
+                  </Avatar>
+
+                  <span className="truncate text-sm font-semibold text-gray-700">
+                    {user?.name}
+                  </span>
+                </div>
+
+                <Button
+                  onClick={handleLogOut}
+                  variant="danger"
+                  className="shrink-0 rounded-lg"
+                >
+                  Log Out
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </header>
   );
 };
 

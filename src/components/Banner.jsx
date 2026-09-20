@@ -7,7 +7,7 @@ const Banner = () => {
       <div className="mx-auto flex w-full max-w-7xl flex-col lg:grid lg:grid-cols-2">
 
         {/* Image */}
-        <div className="relative order-1 h-[240px] w-full sm:h-[320px] md:h-[400px] lg:order-2 lg:h-[600px]">
+        <div className="relative order-1 h-[230px] w-full sm:h-[320px] md:h-[400px] lg:order-2 lg:h-[600px]">
           <Image
             src="/banner.png"
             alt="Premium tile collection"
@@ -18,15 +18,15 @@ const Banner = () => {
           />
         </div>
 
-      
-        <div className="order-2 flex items-center px-5 py-10 sm:px-8 sm:py-14 md:px-10 md:py-16 lg:order-1 lg:px-12 lg:py-20">
+        {/* Content */}
+        <div className="order-2 flex w-full items-center px-5 py-10 sm:px-8 sm:py-14 md:px-10 md:py-16 lg:order-1 lg:px-12 lg:py-20">
           <div className="w-full">
 
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[3px] text-pink-600 sm:text-sm">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[2px] text-pink-600 sm:text-sm sm:tracking-[3px]">
               Premium Tiles Collection
             </p>
 
-            <h1 className="max-w-xl text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl">
+            <h1 className="text-3xl font-extrabold leading-tight text-gray-900 sm:text-4xl md:text-5xl lg:text-6xl">
               Discover Your{" "}
               <span className="text-pink-600">
                 Perfect Aesthetic

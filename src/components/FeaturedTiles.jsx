@@ -7,14 +7,13 @@ const FeaturedTiles = async () => {
   );
 
   const tiles = await res.json();
-
   const topTiles = tiles.slice(0, 4);
 
   return (
     <section className="w-full px-4 py-10 sm:px-6 md:py-14 lg:px-8">
       <div className="mx-auto w-full max-w-7xl">
 
-      
+        {/* Heading */}
         <div className="mb-8 text-center sm:mb-10">
           <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
             Featured Tiles
@@ -25,10 +24,13 @@ const FeaturedTiles = async () => {
           </p>
         </div>
 
-        
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+        {/* Cards */}
+        <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {topTiles.map((product) => (
-            <TilesCard key={product.id} product={product} />
+            <TilesCard
+              key={product.id}
+              product={product}
+            />
           ))}
         </div>
 

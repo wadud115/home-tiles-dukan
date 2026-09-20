@@ -1,48 +1,63 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
 import { Button } from "@heroui/react";
 
 const TilesCard = ({ product }) => {
   return (
-    <div className="card w-full max-w-sm bg-base-100 shadow-xl p-4">
-      <figure className="overflow-hidden rounded-xl">
+    <div className="card w-full min-w-0 bg-base-100 p-3 shadow-xl sm:p-4">
+
+      {/* Image */}
+      <figure className="w-full overflow-hidden rounded-xl">
         <Image
-          className="w-full h-64 object-cover rounded-xl"
           src={product.image}
           alt={product.title}
           width={500}
           height={400}
+          className="h-52 w-full rounded-xl object-cover sm:h-56 md:h-60 lg:h-56"
         />
       </figure>
 
-      <div className="card-body px-2 ">
-        <h2 className="card-title flex gap-2 font-bold text-xl">
-          {product.title}
-          <div className="badge badge-secondary p-2">
+      {/* Content */}
+      <div className="card-body px-1 py-4 sm:px-2">
+
+        {/* Title + Material */}
+        <div className="flex flex-wrap items-start gap-2">
+          <h2 className="min-w-0 flex-1 break-words text-lg font-bold sm:text-xl">
+            {product.title}
+          </h2>
+
+          <div className="badge badge-secondary shrink-0 px-2 py-1 text-xs sm:text-sm">
             {product.material}
           </div>
-        </h2>
+        </div>
 
-        <p className="line-clamp-3 text-gray-500">
+        {/* Description */}
+        <p className="mt-2 line-clamp-3 text-sm leading-6 text-gray-500 sm:text-base">
           {product.description}
         </p>
 
-        <div className="card-actions flex justify-between items-center mt-3">
+        {/* Price + Button */}
+        <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
-
-          <div className="badge badge-outline p-2 font-bold ">
-
-           price ${product.price}
+          <div className="badge badge-outline px-3 py-2 font-bold">
+            Price: ${product.price}
           </div>
 
-          <Link href={`/all-tiles/${product.id}`}>
-            <Button variant="outline" className="btn bg-pink-600 text-white rounded-2xl p-2 my-2">
+          <Link
+            href={`/all-tiles/${product.id}`}
+            className="w-full sm:w-auto"
+          >
+            <Button
+              variant="outline"
+              className="w-full rounded-2xl bg-pink-600 px-4 py-2 text-white sm:w-auto"
+            >
               View Details
             </Button>
           </Link>
+
         </div>
+
       </div>
     </div>
   );

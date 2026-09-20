@@ -1,53 +1,102 @@
-import React from 'react';
-import { Button, Card, Chip, Separator } from "@heroui/react";
-import Image from 'next/image';
+import React from "react";
+import { Button } from "@heroui/react";
+import Image from "next/image";
 
+const TilesDetails = async ({ params }) => {
+  const { id } = await params;
 
+  const res = await fetch(
+    "https://home-tiles-dukan-fvxj.vercel.app/data.json"
+  );
 
-const TilesDetails = async({params}) => {
+  const tiles = await res.json();
 
-    const {id} = await params;
+  const tile = tiles.find((t) => t.id == id);
 
-    const res = await fetch ('https://home-tiles-dukan-fvxj.vercel.app/data.json')
-
-    const tiles = await res.json();
-
-    const tile = tiles.find(t => t.id == id)
-
-    console.log(tile)
+  if (!tile) {
     return (
-               <div className="flex gap-10 bg-base-100 shadow-sm w-2xl max-w-3xl h-100 mx-auto p-5 my-15    ">
-
-
-  <div className="w-80 relative">
-    <Image className="rounded-xl object-cover" src={tile.image} fill alt={tile.title}
-    
-    ></Image>
-  </div>
-
-  <div className="card-body space-y-4 flex flex-col justify-center">
-    <h2 className="card-title font-bold text-2xl">{tile.title}</h2>
-    <p>{tile.description}</p>
-    <p><span className='font-semibold'> dimensions</span>  :{tile. dimensions}</p>
-    <p><span className='font-semibold'>category:</span> <Button className='text-pink-500' variant="secondary">{tile.category}</Button> </p>
-    <p><span className='font-semibold'>material:</span> <Button className='bg-pink-500' variant="primary">{tile.material}</Button> </p>
-
-
-              <div className="flex items-center gap-2">
-                
-                <p > <span className='font-bold'>price : </span>{tile.price}$</p>
-                
-                </div>
-    
-        
-    
-
-
-  </div>
-
-
-</div>
+      <div className="flex min-h-[60vh] items-center justify-center px-4">
+        <h2 className="text-xl font-bold text-gray-500">
+          Tile not found
+        </h2>
+      </div>
     );
+  }
+
+  return (
+    <section className="w-full px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <div className="mx-auto flex w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-base-100 shadow-lg md:flex-row">
+
+        <div className="relative h-[280px] w-full sm:h-[350px] md:h-[450px] md:w-1/2">
+          <Image
+            src={tile.image}
+            alt={tile.title}
+            fill
+            sizes="(max-width: 767px) 100vw, 50vw"
+            className="object-cover"
+          />
+        </div>
+
+      
+        <div className="flex w-full flex-col justify-center p-5 sm:p-7 md:w-1/2 md:p-8 lg:p-10">
+
+          <h1 className="text-2xl font-bold leading-tight text-gray-900 sm:text-3xl lg:text-4xl">
+            {tile.title}
+          </h1>
+
+          
+          <p className="mt-4 text-sm leading-6 text-gray-600 sm:text-base">
+            {tile.description}
+          </p>
+
+        
+          <div className="mt-5 space-y-3 text-sm sm:text-base">
+
+            <p>
+              <span className="font-semibold">Dimensions:</span>{" "}
+              {tile.dimensions}
+            </p>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-semibold">Category:</span>
+
+              <Button
+                size="sm"
+                variant="secondary"
+                className="text-pink-500"
+              >
+                {tile.category}
+              </Button>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-semibold">Material:</span>
+
+              <Button
+                size="sm"
+                className="bg-pink-500 text-white"
+                variant="primary"
+              >
+                {tile.material}
+              </Button>
+            </div>
+
+          </div>
+
+   
+          <div className="mt-6 border-t border-gray-200 pt-5">
+            <p className="text-lg sm:text-xl">
+              <span className="font-bold">Price:</span>{" "}
+              <span className="font-semibold text-pink-600">
+                ${tile.price}
+              </span>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default TilesDetails;
