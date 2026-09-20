@@ -1,7 +1,6 @@
 # 🏠 Tiles Gallery
 
-A modern and responsive tile gallery web application built with **Next.js**.  
-Users can explore premium tiles, search products, view detailed information, and manage their profiles with authentication.
+Tiles Gallery is a modern and responsive tile showcase website where users can explore different types of tiles, search for tiles, view detailed product information, and manage their profile.
 
 ## 🌐 Live Website
 
@@ -33,6 +32,17 @@ Users can explore premium tiles, search products, view detailed information, and
 - 🌐 Dynamic tile details using route parameters
 
 ---
+
+## 📦 NPM Packages Used
+
+- `next`
+- `react`
+- `react-dom`
+- `better-auth`
+- `mongodb`
+- `@heroui/react`
+- `react-toastify`
+- `react-icons`
 
 ## 🛠️ Technologies Used
 
