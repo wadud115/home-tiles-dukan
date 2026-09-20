@@ -9,7 +9,7 @@ Users can explore premium tiles, search products, view detailed information, and
 
 ## 📂 GitHub Repository
 
-🔗 **GitHub:** https://github.com/wadud115/home-tiles
+🔗 **GitHub:**https://github.com/wadud115/home-tiles-dukan.git
 
 ---
 
