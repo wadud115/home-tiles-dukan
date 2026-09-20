@@ -54,7 +54,7 @@ export function UpdateUserModal() {
               <Button className='text-pink-500' slot="close" variant="secondary">
                 Cancel
               </Button>
-              <Button className='bg-pink-500' type="submit">Save</Button>
+              <Button className='bg-pink-500' type="submit">Update</Button>
             </Modal.Footer>
                   
                 </form>

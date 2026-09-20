@@ -14,11 +14,11 @@ const FeaturedTiles = async() => {
 
     const topTiles = tiles.slice(0,4)
     return (
-        <div>
+        <div className='mx-auto'>
 
-              <h2 className='font-bold my-15 text-2xl'>FeaturedTiles</h2>
+              <h2 className='font-bold my-15 mx-8 text-2xl'>FeaturedTiles</h2>
 
-            <div className='grid grid-cols-4 gap-3 my-6'>
+            <div className='grid grid-cols-1: sm:grid-cols-2 lg:grid-cols-4 gap-2 my-6 '>
 
               
                 {

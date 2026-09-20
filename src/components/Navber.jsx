@@ -119,16 +119,11 @@ const Navber = () => {
                 </Dropdown.Item>
 
                 <Dropdown.Item id="all-photos" textValue="All Photos">
-                  <Link href="/all-photos">
-                    <Label>All Photos</Label>
+                  <Link href="/all-tiles">
+                    <Label>All Tiles</Label>
                   </Link>
                 </Dropdown.Item>
 
-                <Dropdown.Item id="pricing" textValue="Pricing">
-                  <Link href="/pricing">
-                    <Label>Pricing</Label>
-                  </Link>
-                </Dropdown.Item>
 
                 <Dropdown.Item id="profile" textValue="Profile">
                   <Link href="/profile">
