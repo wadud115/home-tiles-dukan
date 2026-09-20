@@ -3,27 +3,27 @@
 
 "use client";
 
-// import { authClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { Avatar, Button, Dropdown, Label } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 
 const Navber = () => {
 
-//   const userData = authClient.useSession();
+  const userData = authClient.useSession();
 
-//   const user = userData.data?.user;
+  const user = userData.data?.user;
 
-//   const handleSignOut = async () => {
-//     await authClient.signOut();
-//   };
+  const handleLogOut = async () => {
+    await authClient.signOut();
+  };
 
   return (
     <div className="  border-b border-b-gray-200 px-2">
       <nav className="flex justify-between items-center py-3 max-w-7xl mx-auto w-full">
 
         
-        <div className="flex gap-2 items-center">
+       <Link href={'/'}> <div className="flex gap-2 items-center">
           <Image
           
             src={"/logo.png"}
@@ -36,7 +36,7 @@ const Navber = () => {
 
           <h3 className="font-black text-lg">Tiles Gallery</h3>
         </div>
-
+</Link>
 
        
         <ul className="hidden md:flex items-center gap-5 text-sm">
@@ -59,18 +59,20 @@ const Navber = () => {
         <div className="hidden md:flex gap-4">
 
          
-            <ul className="flex items-center gap-3 text-sm">
+            
              
 
-              <li>
-                <Link href={"/auth/login"}>Log In</Link>
-              </li>
-            </ul>
+             { !user && (
+                <Link href={"/auth/login"}> Log In</Link>
+              )}
+        
           
       
+            
+          {user && (
             <div className="flex gap-3 items-center">
 
-              {/* <Avatar>
+              <Avatar>
                 <Avatar.Image
                   alt={user?.name || "User"}
                   referrerPolicy="no-referrer"
@@ -78,16 +80,19 @@ const Navber = () => {
                 />
 
                 <Avatar.Fallback>
-                
+                  {user?.name?.[0]}
                 </Avatar.Fallback>
-              </Avatar> */}
+              </Avatar>
 
-              {/* <Button>
-                SignOut
-              </Button> */}
+              <Button onClick={handleLogOut} variant="danger">
+                Log Out
+              </Button>
 
             </div>
-        
+          )}
+
+             
+          
 
         </div>
 
@@ -133,25 +138,38 @@ const Navber = () => {
 
                 
               
-                  <>
+                 { !user && ( <>
                    
                     <Dropdown.Item id="signin" textValue="SignIn">
                       <Link href="/auth/login">
                         <Label>log In</Label>
                       </Link>
                     </Dropdown.Item>
-                  </>
-                
+                  </>)
+                }
 
-{/*                
+             { user && (           
                   <Dropdown.Item
                     id="signout"
                     textValue="SignOut"
                     variant="danger"
                   
                   >
-                    <Label>SignOut</Label>
-                  </Dropdown.Item> */}
+                    <Label>Log Out</Label>
+
+                     <Avatar>
+                <Avatar.Image
+                  alt={user?.name || "User"}
+                  referrerPolicy="no-referrer"
+                  src={user?.image}
+                />
+
+                <Avatar.Fallback>
+                  {user?.name?.[0]}
+                </Avatar.Fallback>
+              </Avatar>
+
+                  </Dropdown.Item>  )   }
              
 
               </Dropdown.Menu>

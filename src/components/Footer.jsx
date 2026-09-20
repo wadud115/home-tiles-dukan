@@ -1,148 +1,224 @@
 import Link from "next/link";
-import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="relative mt-24">
-      <div className="mt-12 h-px w-full bg-linear-to-r from-transparent via-gray-300 to-transparent dark:via-white/10" />
+    <footer className="relative mt-24 overflow-hidden border-t border-gray-200 bg-white">
+      {/* Background Glow */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-pink-500/5 via-transparent to-purple-500/5" />
 
-      {/* Background Layer */}
-      <div className="absolute inset-0 -z-10 bg-white dark:bg-[#0a0a0b]" />
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        {/* Main Footer */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
 
-      {/* Subtle Gradient Glow */}
-      <div
-        className="absolute inset-0 -z-10 bg-linear-to-tr 
-        from-purple-500/5 via-transparent to-blue-500/5 
-        dark:from-purple-500/10 dark:to-blue-500/10 blur-3xl"
-      />
-
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Image
-                src="/logo.png"
-                alt="pixgen logo"
-                width={32}
-                height={32}
-                className="dark:brightness-200"
-              />
-              <h2 className="text-xl font-semibold tracking-tight text-black dark:text-white">
-              Tiles Gallery
+          <div>
+            <Link href="/" className="inline-block">
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+                Tiles <span className="text-pink-600">Gallery</span>
               </h2>
-            </div>
+            </Link>
 
-            <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400 max-w-xs">
-              Create production-ready AI visuals in seconds. Built for speed,
-              scale, and creativity.
+            <p className="mt-4 max-w-sm text-sm leading-6 text-gray-600">
+              Discover beautiful and premium tiles for every space.
+              Explore modern designs, elegant patterns, and quality
+              materials for your dream home.
             </p>
+
+            {/* Social Links */}
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-700 transition hover:bg-pink-600 hover:text-white"
+              >
+                f
+              </a>
+
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-700 transition hover:bg-pink-600 hover:text-white"
+              >
+                ig
+              </a>
+
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-700 transition hover:bg-pink-600 hover:text-white"
+              >
+                GH
+              </a>
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-700 transition hover:bg-pink-600 hover:text-white"
+              >
+                in
+              </a>
+            </div>
           </div>
 
-          {/* Product */}
+          {/* Quick Links */}
           <div>
-            <h3 className="text-sm font-semibold text-black dark:text-white mb-4">
-              Product
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-wider text-gray-900">
+              Quick Links
             </h3>
-            <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
-              <li>
-                <Link
-                  href="/generate"
-                  className="hover:text-black dark:hover:text-white transition"
-                >
-                  Generate
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/all-photos"
-                  className="hover:text-black dark:hover:text-white transition"
-                >
-                  Gallery
-                </Link>
-              </li>
-             
-            </ul>
-          </div>
 
-        
-          <div>
-            <h3 className="text-sm font-semibold text-black dark:text-white mb-4">
-              Company
-            </h3>
-            <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+            <ul className="space-y-3 text-sm text-gray-600">
+              <li>
+                <Link
+                  href="/"
+                  className="transition hover:text-pink-600"
+                >
+                  Home
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/all-tiles"
+                  className="transition hover:text-pink-600"
+                >
+                  All Tiles
+                </Link>
+              </li>
+
               <li>
                 <Link
                   href="/about"
-                  className="hover:text-black dark:hover:text-white transition"
+                  className="transition hover:text-pink-600"
                 >
-                  About
+                  About Us
                 </Link>
               </li>
+
               <li>
                 <Link
                   href="/contact"
-                  className="hover:text-black dark:hover:text-white transition"
+                  className="transition hover:text-pink-600"
                 >
                   Contact
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          {/* Categories */}
+          <div>
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-wider text-gray-900">
+              Tile Categories
+            </h3>
+
+            <ul className="space-y-3 text-sm text-gray-600">
               <li>
                 <Link
-                  href="/terms"
-                  className="hover:text-black dark:hover:text-white transition"
+                  href="/all-tiles"
+                  className="transition hover:text-pink-600"
                 >
-                  Terms
+                  Ceramic Tiles
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/all-tiles"
+                  className="transition hover:text-pink-600"
+                >
+                  Marble Tiles
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/all-tiles"
+                  className="transition hover:text-pink-600"
+                >
+                  Porcelain Tiles
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/all-tiles"
+                  className="transition hover:text-pink-600"
+                >
+                  Wooden Tiles
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* CTA Block */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-black dark:text-white">
-              Start creating
+          {/* Contact Us */}
+          <div>
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-wider text-gray-900">
+              Contact Us
             </h3>
 
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Generate your first AI image today.
-            </p>
+            <ul className="space-y-4 text-sm text-gray-600">
 
-            <Link
-              href="/signup"
-              className="inline-flex items-center justify-center px-5 py-2.5 rounded-full 
-              bg-black text-white dark:bg-white dark:text-black 
-              text-sm font-medium transition-all duration-200 
-              hover:scale-[1.02] hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-white/10"
-            >
-              Get Started
-            </Link>
+              <li>
+                <span className="font-semibold text-gray-900">
+                  📍 Address
+                </span>
+                <p className="mt-1">
+                  Sylhet, Bangladesh
+                </p>
+              </li>
+
+              <li>
+                <span className="font-semibold text-gray-900">
+                  📞 Phone
+                </span>
+                <p className="mt-1">
+                  +880 1XXX-XXXXXX
+                </p>
+              </li>
+
+              <li>
+                <span className="font-semibold text-gray-900">
+                  ✉️ Email
+                </span>
+                <p className="mt-1">
+                  support@tilesgallery.com
+                </p>
+              </li>
+
+            </ul>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="mt-12 h-px w-full bg-linear-to-r from-transparent via-gray-300 to-transparent dark:via-white/10" />
+        <div className="my-10 h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
 
-        {/* Bottom */}
-        <div className="mt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
-          <p>© {new Date().getFullYear()} pixgen. All rights reserved.</p>
+        {/* Bottom Footer */}
+        <div className="flex flex-col items-center justify-between gap-4 text-sm text-gray-500 md:flex-row">
+
+          <p>
+            © {new Date().getFullYear()} Tiles Gallery. All rights reserved.
+          </p>
 
           <div className="flex items-center gap-6">
             <Link
               href="/privacy"
-              className="hover:text-black dark:hover:text-white transition"
+              className="transition hover:text-pink-600"
             >
-              Privacy
+              Privacy Policy
             </Link>
+
             <Link
               href="/terms"
-              className="hover:text-black dark:hover:text-white transition"
+              className="transition hover:text-pink-600"
             >
-              Terms
+              Terms & Conditions
             </Link>
           </div>
+
         </div>
       </div>
     </footer>
